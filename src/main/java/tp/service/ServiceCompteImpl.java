@@ -40,14 +40,13 @@ public class ServiceCompteImpl implements ServiceCompte {
 
 	@Override
 	public void transferer(double montant, long numCptDeb, long numCptCred) {
-		// TODO Auto-generated method stub
+		// sera codé mercredi
 
 	}
 
 	@Override
 	public void sauvegarderCompte(Compte c) {
-		// TODO Auto-generated method stub
-
+		compteDao.save(c);
 	}
 
 	@Override

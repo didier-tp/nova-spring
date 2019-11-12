@@ -28,8 +28,14 @@ public class TestServiceCompte {
 	
 	@Test
 	public void testRechercherCompteParNumero() {
-		Compte c1 = serviceCompte.rechercherCompteParNumero(1L);
-		System.out.println(c1.getLabel());
-		Assert.assertTrue(c1.getNumero()==1L);
+		
+		Compte nouveauCompte = new Compte(null,"compte Abc",50.0);
+		serviceCompte.sauvegarderCompte(nouveauCompte);
+		Long idCompte = nouveauCompte.getNumero();//recuperer valeur auto incrementée
+		
+		Compte cptRelu = serviceCompte.rechercherCompteParNumero(idCompte);
+		System.out.println(cptRelu.getLabel());
+		Assert.assertTrue(cptRelu.getNumero()==idCompte);
+		//...
 	}
 }
