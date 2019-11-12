@@ -2,12 +2,15 @@ package tp.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import tp.entity.Compte;
 
 //CompteDaoJpa: version codée via JPA
 //Java Persistence Api (et Hiernate)
 //sera codé plus tard
 
+//@Repository
 public class CompteDaoJpa implements CompteDao {
 
 	@Override

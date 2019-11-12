@@ -2,6 +2,8 @@ package tp.service;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,14 @@ public class ServiceCompteImpl implements ServiceCompte {
 	//en référençant un composant spring existant compatible avec l'interface CompteDao.
 	private CompteDao compteDao; //pour référencer le dao en arrière plan
 	
+	public ServiceCompteImpl() {
+		System.out.println("dans constructeur,compteDao= " + compteDao);
+	}
+	
+	@PostConstruct
+	public void initAfterInjections() {
+		System.out.println("dans méthode préfixée par @PostConstruct,compteDao= " + compteDao);
+	}
 	
 	//setter jouant ici le rôle de fonction 
 	//d'injection de dépendance
