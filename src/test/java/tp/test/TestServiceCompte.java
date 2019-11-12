@@ -1,10 +1,11 @@
 package tp.test;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import tp.entity.Compte;
 import tp.service.ServiceCompte;
@@ -13,17 +14,13 @@ import tp.service.ServiceCompte;
 
 //Solutions des Tps sur https://github.com/didier-tp/nova-spring
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"/springContext.xml"})
 public class TestServiceCompte {
-	private ServiceCompte serviceCompte; //à tester
 	
-	@Before
-	public void initTest() {
-		ApplicationContext contextSpring =
-				new ClassPathXmlApplicationContext("springContext.xml");
-		this.serviceCompte = (ServiceCompte)contextSpring.getBean("serviceCompteImpl"/*id*/);
-		//this.serviceCompte = contextSpring.getBean(ServiceCompte.class);
-		//+.close() ideal dans méthode préfixée par @After ou @AfterClass
-	}
+	@Autowired
+	private ServiceCompte serviceCompte; //à tester
 	
 	@Test
 	public void testRechercherCompteParNumero() {
