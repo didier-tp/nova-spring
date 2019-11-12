@@ -33,7 +33,7 @@ public class CompteDaoJpa implements CompteDao {
 
 	@Override
 	public List<Compte> findAll() {
-		return entityManager.createQuery("SELECT Compte c", Compte.class)
+		return entityManager.createQuery("SELECT c FROM Compte c", Compte.class)
 				.getResultList();
 	}
 
