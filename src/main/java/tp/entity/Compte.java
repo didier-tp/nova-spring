@@ -1,5 +1,11 @@
 package tp.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,9 +16,16 @@ import lombok.Setter;
  */
 
 @Getter @Setter @NoArgsConstructor //de lombok
+
+@Entity //de JPA (javax.persistence)
+//@Table(name="Compte") //par défaut
 public class Compte {
 	
-	private Long numero;
+	@Id //idenfiant (primary key)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto_incr coté base qui remonte mémoire java
+	//@Column(name="numero")
+	private Long numero;                             
+	
 	private String label;
 	private Double solde;
 	

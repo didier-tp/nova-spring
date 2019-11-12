@@ -2,39 +2,51 @@ package tp.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import tp.entity.Compte;
 
 //CompteDaoJpa: version codée via JPA
-//Java Persistence Api (et Hiernate)
-//sera codé plus tard
+//Java Persistence Api (et Hibernate)
 
-//@Repository
+@Repository
+@Transactional()//version spring
 public class CompteDaoJpa implements CompteDao {
+	
+	@PersistenceContext //pour initialiser entityManager avec
+	//META-INF/persistence.xml ou bien application.properties
+	private EntityManager entityManager;
 
 	@Override
 	public Compte save(Compte cpt) {
-		// TODO Auto-generated method stub
+		if(cpt.getNumero()==null) {
+			entityManager.persist(cpt); //INSERT INTO SQL automatique
+		}else {
+			entityManager.merge(cpt); //UPDATE SQL automatique
+		}
 		return null;
 	}
 
 	@Override
 	public List<Compte> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.createQuery("SELECT Compte c", Compte.class)
+				.getResultList();
 	}
 
 	@Override
 	public Compte findById(Long num) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Compte.class, num);
+		//SELECT ... WHERE numero=?
 	}
 
 	@Override
 	public void deleteById(Long num) {
-		// TODO Auto-generated method stub
-
+		Compte cpt = entityManager.find(Compte.class, num);
+		entityManager.remove(cpt);//DELETE SQL
 	}
 
 }

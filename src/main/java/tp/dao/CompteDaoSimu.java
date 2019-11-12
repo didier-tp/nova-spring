@@ -10,7 +10,7 @@ import tp.entity.Compte;
 //pour premiers Tps spring (injection de dépendance)
 
 //@Component
-@Repository //@Repository hérite de @Component (pour les DAO)
+//@Repository //@Repository hérite de @Component (pour les DAO)
 public class CompteDaoSimu implements CompteDao {
 
 	@Override
