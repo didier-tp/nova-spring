@@ -2,12 +2,18 @@ package tp.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import tp.dao.CompteDao;
 import tp.entity.Compte;
 
+@Service //hérite de @Component
 public class ServiceCompteImpl implements ServiceCompte {
 	
-	//@Autowired
+	@Autowired //sur le private ou bien sur le setCompteDao(...)
+	//via @Autowired , on demande au framework spring d'initialiser la variable compteDao
+	//en référençant un composant spring existant compatible avec l'interface CompteDao.
 	private CompteDao compteDao; //pour référencer le dao en arrière plan
 	
 	

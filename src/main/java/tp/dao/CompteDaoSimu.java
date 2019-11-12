@@ -2,11 +2,15 @@ package tp.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import tp.entity.Compte;
 
 //CompteDaoSimu : version de simulation sans base
 //pour premiers Tps spring (injection de dépendance)
 
+//@Component
+@Repository //@Repository hérite de @Component (pour les DAO)
 public class CompteDaoSimu implements CompteDao {
 
 	@Override

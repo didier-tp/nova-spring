@@ -12,7 +12,13 @@ http://www.springframework.org/schema/tx/spring-tx.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context.xsd" >
 
-<context:annotation-config />
-<context:component-scan  base-package="tp"/>
+<bean id="compteDaoSimu" class="tp.dao.CompteDaoSimu">
+</bean>
+
+<bean id="serviceCompteImpl" class="tp.service.ServiceCompteImpl">
+	<!-- <property name="compteDao" ref="compteDaoJpa" /> -->
+	<property name="compteDao" ref="compteDaoSimu" /> 
+	<!-- appel à setCompteDao() , ref="idComposant_a_injecter" -->
+</bean>
 
 </beans>
