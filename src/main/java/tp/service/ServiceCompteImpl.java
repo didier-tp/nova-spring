@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import tp.dao.ClientDao;
@@ -14,6 +15,7 @@ import tp.entity.Client;
 import tp.entity.Compte;
 
 @Service //hérite de @Component
+@Transactional(/* propagation = Propagation.REQUIRED par defaut */)
 public class ServiceCompteImpl implements ServiceCompte {
 	
 	@Autowired //sur le private ou bien sur le setCompteDao(...)
@@ -52,7 +54,7 @@ public class ServiceCompteImpl implements ServiceCompte {
 	}
 
 	@Override
-	@Transactional()
+	//@Transactional() ici ou sur la classe entière 
 	public void transferer(double montant, long numCptDeb, long numCptCred) {
 		Compte cptDeb = compteDao.findById(numCptDeb);
 		cptDeb.setSolde(cptDeb.getSolde()-montant);
