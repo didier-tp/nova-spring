@@ -41,6 +41,11 @@ public class Compte {
 		this.label = label;
 		this.solde = solde;
 	}
+
+	@Override
+	public String toString() {
+		return "Compte [numero=" + numero + ", label=" + label + ", solde=" + solde + "]";
+	}
 	
 	
 }

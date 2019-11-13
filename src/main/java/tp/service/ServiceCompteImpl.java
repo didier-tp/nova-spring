@@ -7,7 +7,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tp.dao.ClientDao;
 import tp.dao.CompteDao;
+import tp.entity.Client;
 import tp.entity.Compte;
 
 @Service //hérite de @Component
@@ -17,6 +19,16 @@ public class ServiceCompteImpl implements ServiceCompte {
 	//via @Autowired , on demande au framework spring d'initialiser la variable compteDao
 	//en référençant un composant spring existant compatible avec l'interface CompteDao.
 	private CompteDao compteDao; //pour référencer le dao en arrière plan
+	
+	@Autowired
+	//NB: l'instance injectée (compatible avec l'interface ClientDao)
+	//sera d'une classe automatiquement générée par Spring-Data (en version jpa)
+	private ClientDao clientDao;
+	
+	@Override
+	public void sauvegarderClient(Client cli) {
+		clientDao.save(cli);
+	}
 	
 	public ServiceCompteImpl() {
 		System.out.println("dans constructeur,compteDao= " + compteDao);
@@ -53,5 +65,7 @@ public class ServiceCompteImpl implements ServiceCompte {
 	public List<Compte> recupererComptesDuClient(long numClient) {
 		return compteDao.findByClientNumero(numClient);
 	}
+
+	
 
 }
