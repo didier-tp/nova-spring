@@ -15,7 +15,7 @@ public class MySpringBootApplication extends SpringBootServletInitializer {
 public static void main(String[] args) {
 	//SpringApplication.run(MySpringBootApplication.class, args);
 	SpringApplication app = new SpringApplication(MySpringBootApplication.class);
-	app.setAdditionalProfiles("h2");
+	app.setAdditionalProfiles("h2","dev");
 	ConfigurableApplicationContext context = app.run(args);
 	System.out.println("http://localhost:8080/myMvcSpringBootApp");
 }
