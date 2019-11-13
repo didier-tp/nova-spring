@@ -51,8 +51,7 @@ public class ServiceCompteImpl implements ServiceCompte {
 
 	@Override
 	public List<Compte> recupererComptesDuClient(long numClient) {
-		// TODO Auto-generated method stub
-		return null;
+		return compteDao.findByClientNumero(numClient);
 	}
 
 }

@@ -49,4 +49,12 @@ public class CompteDaoJpa implements CompteDao {
 		entityManager.remove(cpt);//DELETE SQL
 	}
 
+	@Override
+	public List<Compte> findByClientNumero(long numClient) {
+		//requete exprimée en JPAQL = SQL adaptée à java (nom classe et nom de propriété)
+		return entityManager.createQuery("SELECT c FROM Compte c WHERE c.client.numero=?1", Compte.class)
+				.setParameter(1, numClient)
+				.getResultList();
+	}
+
 }

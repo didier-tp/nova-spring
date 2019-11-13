@@ -15,4 +15,6 @@ public interface CompteDao {
 		public Compte findById(Long num);
 		//public Optional<Compte> findById(Long num);
 		public void deleteById(Long num);
+		
+		public List<Compte> findByClientNumero(long numClient);
 }

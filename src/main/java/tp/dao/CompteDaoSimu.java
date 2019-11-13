@@ -41,4 +41,10 @@ public class CompteDaoSimu implements CompteDao {
 
 	}
 
+	@Override
+	public List<Compte> findByClientNumero(long numClient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

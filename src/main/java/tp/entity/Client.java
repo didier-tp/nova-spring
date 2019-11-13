@@ -1,11 +1,10 @@
 package tp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,27 +19,24 @@ import lombok.Setter;
 
 @Entity //de JPA (javax.persistence)
 //@Table(name="Compte") //par défaut
-public class Compte {
+public class Client {
 	
 	@Id //idenfiant (primary key)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//auto_incr coté base qui remonte mémoire java
 	//@Column(name="numero")
 	private Long numero;                             
 	
-	private String label;
-	private Double solde;
+	private String nom;
+	private String prenom;
 	
-	@ManyToOne()
-	@JoinColumn(name="numClient") //nom de la colonne clef etrangère
-	                              //qui va référencer un client dans la table Compte
-	private Client client;
-	
-	public Compte(Long numero, String label, Double solde) {
+	public Client(Long numero, String nom, String prenom) {
 		super();
 		this.numero = numero;
-		this.label = label;
-		this.solde = solde;
+		this.nom = nom;
+		this.prenom = prenom;
 	}
+	
+	
 	
 	
 }
