@@ -17,7 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@Profile("basicSecurity")
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)//necessary for @PreAuthorize("hasRole('ADMIN or ...')")
 public class BasicMemoryWebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -75,7 +74,7 @@ public class BasicMemoryWebSecurityConfig extends WebSecurityConfigurerAdapter {
                  "/**/*.css",
                  "/**/*.js").permitAll()
 	 		   .antMatchers("/rest/login-api/public/auth").permitAll()
-	 		   .antMatchers("/rest/devise-api/public/**").permitAll()
+	 		   .antMatchers("/rest/api-compte/public/**").permitAll()
 	 		   //.anyRequest().permitAll()
 	 		   .anyRequest().authenticated()
 	 		   //.anyRequest().hasRole("ADMIN")

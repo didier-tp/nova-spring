@@ -12,16 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 import tp.entity.Compte;
 import tp.service.ServiceCompte;
 
+// on appelle "api rest" un paquet de web services REST concernant un même domaine fonctionnel
+// ex: api-compte , api-facture
+
+// il y a souvent , une partie "public" accessible à tous (GET, pas confidentiel)
+//                  une partie "private" accessible qu'après authentification
+
+//---> URL completes conseillées
+//  .../rest/api-compte/public/compte/1 (en GET)
+//  .../rest/api-compte/private/compte/1 (en DELETE)
+
 
 //controleur REST pour les comptes bancaires
 @RestController
-@RequestMapping(value="/rest/compte" , headers="Accept=application/json")
+@RequestMapping(value="/rest/api-compte/public/compte" , headers="Accept=application/json")
 public class CompteRestCtrl {
 	
 	@Autowired //injection du service métier pour déléguer traitements
 	private ServiceCompte serviceCompte;
 	
-	//http://localhost:8080/myMvcSpringBootApp/rest/compte?numCli=1
+	//http://localhost:8080/myMvcSpringBootApp/rest/api-compte/public/compte?numCli=1
 	@RequestMapping(value="" , method=RequestMethod.GET)
 	public List<Compte> getComptesByCriteria(@RequestParam(value="numCli",required=false) 
 	                                          Long numClient){
@@ -32,7 +42,7 @@ public class CompteRestCtrl {
 		else {	return serviceCompte.recupererComptesDuClient(numClient);
 		}	
 	}
-	//http://localhost:8080/myMvcSpringBootApp/rest/compte/1
+	//http://localhost:8080/myMvcSpringBootApp/rest/api-compte/public/compte/1
 	@RequestMapping(value="/{numCompte}" , method=RequestMethod.GET)
     public  Compte getCompteByNum(@PathVariable("numCompte") Long num){
 		return serviceCompte.rechercherCompteParNumero(num);

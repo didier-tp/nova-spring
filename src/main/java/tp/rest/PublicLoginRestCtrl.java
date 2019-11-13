@@ -1,6 +1,7 @@
 package tp.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tp.dto.AuthRequest;
 import tp.security.AuthInternalSubController;
+
 
 @CrossOrigin("*")//pour accepter de répondre à des appels ajax 
                  //provenant d'autres domaines/applications/...
