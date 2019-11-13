@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import tp.MySpringBootApplication;
@@ -21,6 +22,9 @@ import tp.service.ServiceCompte;
 //@ContextConfiguration(locations={"/springContext.xml"})
 //@ContextConfiguration(classes={SpringConfig.class})
 @SpringBootTest(classes= {MySpringBootApplication.class})
+//@ActiveProfiles("postgresql")
+//@ActiveProfiles("mysql")
+@ActiveProfiles("h2")
 public class TestServiceCompte {
 	
 	@Autowired
