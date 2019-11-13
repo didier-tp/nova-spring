@@ -81,7 +81,7 @@
 			    <artifactId>spring-boot-maven-plugin</artifactId>
 			    <!-- <version>2.0.5.RELEASE</version> -->
 			    <configuration>
-			        <mainClass>org.mycontrib.api.MySpringBootApplication</mainClass>
+			        <mainClass>tp.MySpringBootApplication</mainClass>
                     <layout>ZIP</layout>
 			    </configuration>
 			</plugin>
