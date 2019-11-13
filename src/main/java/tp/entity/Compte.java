@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +35,7 @@ public class Compte {
 	@ManyToOne()
 	@JoinColumn(name="numClient") //nom de la colonne clef etrangère
 	                              //qui va référencer un client dans la table Compte
+	@JsonIgnore
 	private Client client;
 	
 	public Compte(Long numero, String label, Double solde) {
