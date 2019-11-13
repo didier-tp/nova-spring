@@ -27,7 +27,9 @@ public class PublicLoginRestCtrl {
 	@Autowired
 	private AuthInternalSubController authInternalSubController;
 	
-	
+	//http://localhost:8080/myMvcSpringBootApp/rest/login-api/public/auth
+	//POST , Content-Type:application/json , 
+	//{ "username" : "admin1" , "password" : "pwdadmin1" , "roles" : "admin" }
 	@PostMapping("/auth")
     public ResponseEntity<?> authenticateUser(@RequestBody AuthRequest loginRequest) {
 		return authInternalSubController.authenticateUser(loginRequest);

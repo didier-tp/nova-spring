@@ -33,7 +33,10 @@ public class ComptePrivateRestCtrl {
 	
 
 	//http://localhost:8080/myMvcSpringBootApp/rest/api-compte/private/compte
-	//invoqué en mode POST avec { "label" : "compte Xy" , "solde" : 50.0 }
+	//invoqué en mode POST avec { "label" : "compte Xy" , "solde" : 50.0 } 
+	// (Content-Type:application/json)
+	//appelable qu'en retransmettant le "Bearer token" 
+	//dans le champ "Authorization" de l'entete HTTP
  	@RequestMapping(value="" , method=RequestMethod.POST)
     public  Compte postCompte(@RequestBody Compte compte){
 		serviceCompte.sauvegarderCompte(compte);
