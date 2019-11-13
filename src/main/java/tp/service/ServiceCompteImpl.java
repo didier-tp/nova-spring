@@ -56,13 +56,19 @@ public class ServiceCompteImpl implements ServiceCompte {
 	@Override
 	//@Transactional() ici ou sur la classe entière 
 	public void transferer(double montant, long numCptDeb, long numCptCred) {
-		Compte cptDeb = compteDao.findById(numCptDeb);
-		cptDeb.setSolde(cptDeb.getSolde()-montant);
-		compteDao.save(cptDeb);
-		
-		Compte cptCred = compteDao.findById(numCptCred);
-		cptCred.setSolde(cptCred.getSolde()+montant);
-		compteDao.save(cptCred);
+		try {
+			Compte cptDeb = compteDao.findById(numCptDeb);
+			cptDeb.setSolde(cptDeb.getSolde()-montant);
+			compteDao.save(cptDeb);
+			
+			Compte cptCred = compteDao.findById(numCptCred);
+			cptCred.setSolde(cptCred.getSolde()+montant);
+			compteDao.save(cptCred);
+		} catch (Exception e) {
+			//+eventuel ajout d'une ligne de log via logger
+			throw new RuntimeException("echec transfert",e);
+			//throw new MyServiceException("echec transfert",e); //héritant de RuntimeException
+		}
 	}
 
 	@Override
