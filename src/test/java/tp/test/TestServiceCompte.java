@@ -51,6 +51,27 @@ public class TestServiceCompte {
 	}
 	
 	@Test
+	public void testMauvaisTransfertAvecTransactional() {
+		Compte c1 = new Compte(null,"compte1",250.0);
+		serviceCompte.sauvegarderCompte(c1);
+		Compte c2 = new Compte(null,"compte2",350.0);
+		serviceCompte.sauvegarderCompte(c2);
+		try {
+			//appel avec un numCptCred négatif qui n'existe pas
+			serviceCompte.transferer(50, c1.getNumero(), -c2.getNumero());
+		} catch (Exception e) {
+			System.out.println("Exception attendue :" + e.getMessage());
+		}
+		
+		Compte c1Apres = serviceCompte.rechercherCompteParNumero(c1.getNumero());
+		Compte c2Apres = serviceCompte.rechercherCompteParNumero(c2.getNumero());
+		
+		System.out.println("Apres mauvais virement , c1="+c1Apres+",c2="+c2Apres);
+		Assert.assertEquals(c1.getSolde()-0, c1Apres.getSolde(),0.0001);
+		Assert.assertEquals(c2.getSolde()+0, c2Apres.getSolde(),0.0001);
+	}
+	
+	@Test
 	public void testRechercherComptesDuClient() {
 		//créer un client
 		Client cliA = new Client(null,"Bon", "Jean");

@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tp.dao.ClientDao;
 import tp.dao.CompteDao;
@@ -51,7 +52,7 @@ public class ServiceCompteImpl implements ServiceCompte {
 	}
 
 	@Override
-	//@Transactional()
+	@Transactional()
 	public void transferer(double montant, long numCptDeb, long numCptCred) {
 		Compte cptDeb = compteDao.findById(numCptDeb);
 		cptDeb.setSolde(cptDeb.getSolde()-montant);
