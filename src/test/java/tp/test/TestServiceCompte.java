@@ -34,6 +34,23 @@ public class TestServiceCompte {
 	private ServiceCompte serviceCompte; //à tester
 	
 	@Test
+	public void testBonTransfert() {
+		Compte c1 = new Compte(null,"compte1",250.0);
+		serviceCompte.sauvegarderCompte(c1);
+		Compte c2 = new Compte(null,"compte2",350.0);
+		serviceCompte.sauvegarderCompte(c2);
+		
+		serviceCompte.transferer(50, c1.getNumero(), c2.getNumero());
+		
+		Compte c1Apres = serviceCompte.rechercherCompteParNumero(c1.getNumero());
+		Compte c2Apres = serviceCompte.rechercherCompteParNumero(c2.getNumero());
+		
+		System.out.println("Apres bon virement , c1="+c1Apres+",c2="+c2Apres);
+		Assert.assertEquals(c1.getSolde()-50, c1Apres.getSolde(),0.0001);
+		Assert.assertEquals(c2.getSolde()+50, c2Apres.getSolde(),0.0001);
+	}
+	
+	@Test
 	public void testRechercherComptesDuClient() {
 		//créer un client
 		Client cliA = new Client(null,"Bon", "Jean");

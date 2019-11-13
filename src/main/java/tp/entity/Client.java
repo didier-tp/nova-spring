@@ -18,7 +18,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor //de lombok
 
 @Entity //de JPA (javax.persistence)
-//@Table(name="Compte") //par défaut
+//@Table(name="Client") //par défaut
 public class Client {
 	
 	@Id //idenfiant (primary key)
